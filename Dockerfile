@@ -2,7 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY worker-v0.02.js /app/worker-v0.02.js
+COPY bundle /app/bundle
+RUN cat /app/bundle/worker-v0.02.b64.part.* | base64 -d > /app/worker-v0.02.js \
+  && rm -rf /app/bundle
 
 ENV NODE_ENV=production
 ENV SFL_MARKET_WATCH_HOST=0.0.0.0
