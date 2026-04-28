@@ -1,0 +1,25 @@
+app = "CHANGE_ME"
+primary_region = "ams"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  SFL_MARKET_WATCH_HOST = "0.0.0.0"
+  SFL_MARKET_WATCH_PORT = "8790"
+  SFL_MARKET_WATCH_DIR = "/data/.state"
+  SFL_MARKET_INTERVAL_MS = "1200000"
+  SFL_MARKET_JITTER_MS = "300000"
+  SFL_MARKET_SPREAD_THRESHOLD = "20"
+  SFL_MARKET_FILTERS = "collectibles,wearables"
+  SFL_MARKET_REQUEST_DELAY_MS = "300"
+  SFL_MARKET_REQUEST_RETRIES = "3"
+
+[mounts]
+  source = "worker_data"
+  destination = "/data"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
